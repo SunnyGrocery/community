@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created by SunnyGrocery on 2019/10/5 19:31
  */
 @Controller
-public class GreetingController {
-    @GetMapping("/greeting")
-    public String hello(@RequestParam(name = "name", required = false, defaultValue = "SunnyGrocery") String name, Model model) {
-        model.addAttribute("name", name);
-        return "greeting";
+public class IndexController {
+    @GetMapping("/")
+    public String hello() {
+        return "index";
     }
 }
