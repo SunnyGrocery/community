@@ -1,3 +1,11 @@
 server:
-  port: 8080
+  port: 8887
+github:
+  client:
+    id: c492267ec89b14e7e85a
+    secret: e764a3917ede9d041da614756ebb30c1a1ea50c4
+  callback:
+    url: http://localhost:8887/callback
+
+
   
