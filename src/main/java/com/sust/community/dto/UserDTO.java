@@ -1,13 +1,22 @@
 package com.sust.community.dto;
 
+import com.sust.community.model.User;
+
 /**
  * Created by SunnyGrocery on 2019/10/6 15:08
  */
-public class GithubUserDTO {
+public class UserDTO {
 
     private String name;
     private String id;
     private String bio;
+
+    public static UserDTO fromUser(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getAccountId());
+        userDTO.setName(user.getName());
+        return userDTO;
+    }
 
     public String getName() {
         return name;

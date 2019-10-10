@@ -2,7 +2,7 @@ package com.sust.community.provider;
 
 import com.alibaba.fastjson.JSON;
 import com.sust.community.dto.AccessTokenDTO;
-import com.sust.community.dto.GithubUserDTO;
+import com.sust.community.dto.UserDTO;
 import com.sust.community.enums.AuthorizeEnum;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
@@ -14,6 +14,11 @@ import java.io.IOException;
  */
 @Component
 public class GithubProvider {
+    /**
+     * 获取github第三方token
+     * @param accessTokenDTO
+     * @return
+     */
     public String getAccessToken(AccessTokenDTO accessTokenDTO) {
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
 
@@ -35,7 +40,7 @@ public class GithubProvider {
         return null;
     }
 
-    public GithubUserDTO getUser(String access_token) {
+    public UserDTO getUser(String access_token) {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -43,7 +48,7 @@ public class GithubProvider {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            return JSON.parseObject(response.body().string(), GithubUserDTO.class);
+            return JSON.parseObject(response.body().string(), UserDTO.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

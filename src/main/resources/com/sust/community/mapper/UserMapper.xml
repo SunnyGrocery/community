@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sust.community.mapper.UserMapper">
+    <resultMap type="com.sust.community.model.User" id="UserResultMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="account_id" property="accountId"/>
+        <result column="token" property="token"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="UserResultMap">
+        select *
+        from user
+    </select>
+    <select id="selectById" resultMap="UserResultMap">
+        select *
+        from user
+        where id = #{id}
+    </select>
+    <select id="selectToken" resultMap="UserResultMap">
+        select *
+        from user
+        where token = #{token}
+    </select>
+    <select id="selectByAccountId" resultMap="UserResultMap">
+        select *
+        from user
+        where account_id = #{account_id}
+    </select>
+
+    <update id="update">
+        update user
+        set name=#{name},
+            account_id=#{accountId},
+            token=#{token},
+            bio = #{bio}
+        where id = #{id}
+    </update>
+    <delete id="delete">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into user(account_id, name, token, bio)
+        values (#{accountId}, #{name}, #{token}, #{bio})
+    </insert>
+
+
+</mapper>

@@ -1,11 +1,22 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/community?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
 server:
   port: 8887
+logging:
+  level:
+    com.sust.community.mapper: debug
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    lazy-loading-enabled: true
+  type-aliases-package: com.sust.community.model
 github:
   client:
     id: c492267ec89b14e7e85a
     secret: e764a3917ede9d041da614756ebb30c1a1ea50c4
   callback:
     url: http://localhost:8887/callback
-
-
-  
