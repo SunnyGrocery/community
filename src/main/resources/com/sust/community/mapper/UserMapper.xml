@@ -8,7 +8,7 @@
         <result column="account_id" property="accountId"/>
         <result column="token" property="token"/>
         <result column="create_time" property="createTime"/>
-        <result column="modify_time" property="modifyTime"/>
+        <result column="modified_time" property="modifiedTime"/>
     </resultMap>
 
     <select id="selectAll" resultMap="UserResultMap">

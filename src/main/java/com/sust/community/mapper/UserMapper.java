@@ -21,6 +21,8 @@ public interface UserMapper {
     User selectToken(String token);
 
     User selectById(Integer id);
+
     User selectByAccountId(String accountId);
+
     List<User> selectAll();
 }

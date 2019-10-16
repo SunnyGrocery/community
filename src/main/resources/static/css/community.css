@@ -1,0 +1,16 @@
+body {
+    background: url("https://elasticsearch.cn/static/css/default/img/bg.jpg");
+}
+
+.main-publish {
+    margin: 10px 30px;
+    background: white;
+    border-radius: 10px;
+}
+
+.btn-publish {
+    float: right;
+    margin-bottom: 25px;
+    margin-right: 15px;
+}
+

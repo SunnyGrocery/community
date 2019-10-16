@@ -2,9 +2,9 @@ package com.sust.community.model;
 
 import com.sust.community.dto.UserDTO;
 import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by SunnyGrocery on 2019/10/8 10:37
@@ -26,5 +26,6 @@ public class User {
     private String token;
     private String bio;
     private Date createTime;
-    private Date modifyTime;
+    private Date modifiedTime;
+
 }

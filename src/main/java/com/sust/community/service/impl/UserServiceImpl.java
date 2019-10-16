@@ -1,5 +1,6 @@
 package com.sust.community.service.impl;
 
+import com.sust.community.mapper.NoteMapper;
 import com.sust.community.mapper.UserMapper;
 import com.sust.community.model.User;
 import com.sust.community.service.UserService;

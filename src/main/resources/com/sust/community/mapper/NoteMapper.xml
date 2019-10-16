@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sust.community.mapper.NoteMapper">
+    <resultMap type="com.sust.community.model.Note" id="NoteResultMap">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="view_count" property="viewCount"/>
+        <result column="label" property="label"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+        <association property="user"
+                     fetchType="lazy"
+                     select="com.sust.community.mapper.UserMapper.selectByAccountId"
+                     column="{account_id=user_id}"
+        />
+    </resultMap>
+
+    <select id="selectAll" resultMap="NoteResultMap">
+        select *
+        from note
+    </select>
+    <select id="selectByUserId" resultMap="NoteResultMap">
+        select *
+        from note
+        where user_id = #{userId}
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into note(user_id, title, description, label)
+        values (#{user.id}, #{title}, #{description}, #{label})
+    </insert>
+    <update id="update">
+        update note
+        set
+        <if test="title!=null and title!=''">
+            title = #{title},
+        </if>
+        <if test="description!=null and description!=''">
+            description= #{description},
+        </if>
+        <if test="label!=null and label!=''">
+            label = #{label}
+        </if>
+        where id = #{id}
+    </update>
+
+</mapper>
