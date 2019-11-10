@@ -41,6 +41,16 @@ body {
     float: right;
 }
 
+.note-edit {
+    font-family: candara, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif, -apple-system !important;
+    font-size: 13px;
+    float: right;
+    color: #9d9d9d;
+}
+
+.note-edit-hr {
+    margin-bottom: 5px;
+}
 
 /*.this-page {*/
 /*    background-color: #499ef3 !important;*/

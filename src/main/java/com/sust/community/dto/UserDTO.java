@@ -16,6 +16,9 @@ public class UserDTO {
     private String avatarUrl;
 
     public static UserDTO fromUser(User user) {
+        if (user == null) {
+            return null;
+        }
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getAccountId());
         userDTO.setName(user.getName());

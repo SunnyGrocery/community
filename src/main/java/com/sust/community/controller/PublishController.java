@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.jws.WebParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,8 +29,27 @@ public class PublishController {
     @Autowired
     private HttpServletRequest request;
 
+    @GetMapping("/publish/{noteId}")
+    public String edit(@PathVariable(value = "noteId") Integer noteId, Model model) {
+        User user = (User) request.getAttribute("userRaw");
+        Note note = noteService.findById(noteId);
+        if (user != null && note != null && user.getId().equals(note.getUser().getId())) {
+            NoteDTO noteDTO = NoteDTO.fromNote(note);
+            model.addAttribute("title", noteDTO.getTitle());
+            model.addAttribute("description", noteDTO.getDescription());
+            model.addAttribute("label", noteDTO.getLabel());
+            model.addAttribute("noteId", noteDTO.getNoteId());
+            return "publish";
+        }
+        return "redirect:/";
+    }
+
     @GetMapping("/publish")
     public String publish() {
+        User user = (User) request.getAttribute("userRaw");
+        if (user == null) {
+            return "redirect:/";
+        }
         return "publish";
     }
 
@@ -44,23 +65,35 @@ public class PublishController {
      */
     @PostMapping("/publish")
     public String doPublish(NoteDTO noteDTO, Model model) {
-
         User user = (User) request.getAttribute("userRaw");
         if (user == null) {
             return "redirect:/";
         }
         if (noteDTO.getTitle() == null || "".equals(noteDTO.getTitle().trim()) || noteDTO.getDescription() == null || "".equals(noteDTO.getDescription().trim()) || noteDTO.getLabel() == null || "".equals(noteDTO.getLabel().trim())) {
             model.addAttribute("error", "非法空提交");
+            model.addAttribute("title", noteDTO.getTitle());
+            model.addAttribute("description", noteDTO.getDescription());
+            model.addAttribute("label", noteDTO.getLabel());
+            model.addAttribute("noteId", noteDTO.getNoteId());
             return "publish";
         }
-
-        model.addAttribute("title", noteDTO.getTitle());
-        model.addAttribute("description", noteDTO.getDescription());
-        model.addAttribute("label", noteDTO.getLabel());
         //验证结束
+
         Note note = Note.fromNoteDTO(noteDTO);
-        note.setUser(user);
-        noteService.save(note);
+        Integer noteId = noteDTO.getNoteId();
+        if (noteId == null) {
+            note.setUser(user);
+            noteService.save(note);
+            return "redirect:/note/" + note.getId();
+        } else {
+            Note noteTemp = noteService.findById(noteId);
+            //验证note所属User是否正确
+            if (noteTemp != null && noteTemp.getUser().getId().equals(user.getId())) {
+                note.setUser(user);
+                noteService.change(note);
+                return "redirect:/note/" + noteId;
+            }
+        }
         return "redirect:/";
     }
 }

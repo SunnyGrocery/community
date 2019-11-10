@@ -21,6 +21,13 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Autowired
     UserService userService;
 
+    /**
+     * 给 request 写入 UserDTO 和 User 对象，若验证失败，则为空
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         User user;

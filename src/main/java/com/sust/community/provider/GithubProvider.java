@@ -27,6 +27,7 @@ public class GithubProvider {
 
         RequestBody body = RequestBody.create(mediaType, JSON.toJSONString(accessTokenDTO));
         Request request = new Request.Builder()
+                //请求
                 .url(AuthorizeEnum.ACCESS_TOKEN_URL.getData())
                 .post(body)
                 .build();

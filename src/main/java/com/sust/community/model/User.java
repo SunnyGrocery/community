@@ -27,6 +27,7 @@ public class User {
     private String token;
     private String bio;
     private String avatarUrl;
+
     private Date createTime;
     private Date modifiedTime;
 

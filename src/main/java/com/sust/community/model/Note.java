@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class Note {
     public static Note fromNoteDTO(NoteDTO noteDTO) {
         Note note = new Note();
+        note.setId(noteDTO.getNoteId());
         note.setTitle(noteDTO.getTitle());
         note.setDescription(noteDTO.getDescription());
         note.setLabel(noteDTO.getLabel());

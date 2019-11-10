@@ -12,7 +12,11 @@ import java.time.format.DateTimeFormatter;
 public class NoteDTO {
 
     public static NoteDTO fromNote(Note note) {
+        if (note == null) {
+            return null;
+        }
         NoteDTO noteDTO = new NoteDTO();
+        noteDTO.setNoteId(note.getId());
         noteDTO.setTitle(note.getTitle());
         noteDTO.setDescription(note.getDescription());
         noteDTO.setLabel(note.getLabel());
@@ -28,6 +32,7 @@ public class NoteDTO {
         return noteDTO;
     }
 
+    private Integer noteId;
     private String title;
     private String description;
     private String label;

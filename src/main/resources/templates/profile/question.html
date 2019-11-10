@@ -19,12 +19,14 @@
         <div class="col-lg-9 col-md-10 col-sm-12 col-xs-12">
             <h3>
                 <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                <span>我的帖子</span>
+                <span>&nbsp;我的帖子</span>
             </h3>
             <hr class="main-hr"/>
             <div th:each="note : ${notes}" class="media">
                 <div class="media-body">
-                    <h4 th:text="${note.title}" class="media-heading media-body-h4">问题标题</h4>
+                    <h4 class="media-heading media-body-h4">
+                        <a th:text="${note.title}" th:href="'/note/'+${note.noteId}"></a>
+                    </h4>
                     <p class="question-content page">
                         <span th:text="${note.label}">tags|tags|tags</span>
                         &nbsp;•&nbsp;<span th:text="${note.commentCount}"></span>&nbsp;个回复

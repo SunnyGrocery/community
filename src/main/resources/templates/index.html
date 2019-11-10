@@ -23,13 +23,15 @@
             <div th:each="note : ${notes}" class="media">
                 <div class="media-left">
                     <a href="#">
-                        <img class="media-object img-rounded" data-src="holder.js/64x64" alt="64x64"
+                        <img class="media-object img-rounded img-circle" data-src="holder.js/64x64" alt="64x64"
                              th:src="${note.avatarUrl}"
                              data-holder-rendered="true" style="width: 60px; height: 60px;" src="">
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 th:text="${note.title}" class="media-heading media-body-h4">问题标题</h4>
+                    <h4 class="media-heading media-body-h4">
+                        <a th:text="${note.title}" th:href="'/note/'+${note.noteId}"></a>
+                    </h4>
                     <p class="question-content page">
                         <span th:text="${note.label}">tags|tags|tags</span>
                         &nbsp;•&nbsp;<span th:text="${note.commentCount}"></span>&nbsp;个回复
