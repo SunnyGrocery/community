@@ -2,8 +2,12 @@ body {
     background: url("https://elasticsearch.cn/static/css/default/img/bg.jpg");
 }
 
+.main-hr {
+    border-width: 2px;
+}
+
 .main-publish {
-    margin: 10px 30px;
+    margin: 20px 50px;
     background: white;
     border-radius: 10px;
 }
@@ -13,4 +17,33 @@ body {
     margin-bottom: 25px;
     margin-right: 15px;
 }
+
+.question-content {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+
+.media-body-hr {
+    margin-top: 1rem;
+}
+
+.media-body-h4 {
+    margin-bottom: 2rem;
+}
+
+.page {
+    font-family: candara, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif, -apple-system !important;
+}
+
+.page-nav {
+    font-family: candara, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif, -apple-system !important;
+    float: right;
+}
+
+
+/*.this-page {*/
+/*    background-color: #499ef3 !important;*/
+/*    color: white !important;*/
+/*}*/
 

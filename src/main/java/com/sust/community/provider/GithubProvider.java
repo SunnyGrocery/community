@@ -16,6 +16,7 @@ import java.io.IOException;
 public class GithubProvider {
     /**
      * 获取github第三方token
+     *
      * @param accessTokenDTO
      * @return
      */

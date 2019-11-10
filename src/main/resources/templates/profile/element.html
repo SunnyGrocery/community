@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="sub-left(active)">
+    <div class="col-lg-3 col-md-2 col-sm-12 col-xs-12 ">
+        <h3><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;个人中心</h3>
+        <div class="list-group">
+            <a href="/profile/question/" class="list-group-item" th:classappend="${active=='question'}?'active'">
+                <span th:if="${pageInfo}!=null" th:text="${pageInfo.getPageHelpInfo().getTotal()}"
+                      class="badge"></span>我的帖子</a>
+            <a href="/profile/replies/" class="list-group-item" th:classappend="${active=='replies'}?'active'">
+                <span class="badge">1</span>最新回复</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

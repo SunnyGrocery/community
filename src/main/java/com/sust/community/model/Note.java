@@ -9,12 +9,15 @@ import java.time.LocalDateTime;
  * Created by SunnyGrocery on 2019/10/11 16:49
  */
 @Data
-public class  Note {
+public class Note {
     public static Note fromNoteDTO(NoteDTO noteDTO) {
         Note note = new Note();
         note.setTitle(noteDTO.getTitle());
         note.setDescription(noteDTO.getDescription());
         note.setLabel(noteDTO.getLabel());
+        note.setCommentCount(noteDTO.getCommentCount());
+        note.setLikeCount(noteDTO.getLikeCount());
+        note.setViewCount(noteDTO.getViewCount());
         return note;
     }
 

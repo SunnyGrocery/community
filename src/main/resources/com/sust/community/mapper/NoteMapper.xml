@@ -14,14 +14,19 @@
         <result column="modify_time" property="modifyTime"/>
         <association property="user"
                      fetchType="lazy"
-                     select="com.sust.community.mapper.UserMapper.selectByAccountId"
-                     column="{account_id=user_id}"
+                     select="com.sust.community.mapper.UserMapper.selectById"
+                     column="{id=user_id}"
         />
     </resultMap>
 
     <select id="selectAll" resultMap="NoteResultMap">
         select *
         from note
+    </select>
+    <select id="selectById" resultMap="NoteResultMap">
+        select *
+        from note
+        where id = #{id}
     </select>
     <select id="selectByUserId" resultMap="NoteResultMap">
         select *

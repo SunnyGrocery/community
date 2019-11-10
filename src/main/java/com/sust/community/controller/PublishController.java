@@ -44,38 +44,20 @@ public class PublishController {
      */
     @PostMapping("/publish")
     public String doPublish(NoteDTO noteDTO, Model model) {
-        // 这里做一个极不优雅的权限验证
-        User user = null;
-        Cookie[] cookies = request.getCookies();
-        boolean loggedIn = false;
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                String token = cookie.getValue();
-                if ("token".equals(cookie.getName())) {
-                    loggedIn = true;
-                    //验证Token是否正确存在
-                    user = userService.findByToken(token);
-                    break;
-                }
-            }
-        }
-        if (!loggedIn) {
-            model.addAttribute("error", "用户未登录");
-            return "publish";
-        }
-        if (user == null) {
-            model.addAttribute("error", "用户状态不正确");
-            return "publish";
-        }else {
-            request.getSession().setAttribute("user", UserDTO.fromUser(user));
-        }
 
+        User user = (User) request.getAttribute("userRaw");
+        if (user == null) {
+            return "redirect:/";
+        }
         if (noteDTO.getTitle() == null || "".equals(noteDTO.getTitle().trim()) || noteDTO.getDescription() == null || "".equals(noteDTO.getDescription().trim()) || noteDTO.getLabel() == null || "".equals(noteDTO.getLabel().trim())) {
             model.addAttribute("error", "非法空提交");
             return "publish";
         }
-        //验证结束
 
+        model.addAttribute("title", noteDTO.getTitle());
+        model.addAttribute("description", noteDTO.getDescription());
+        model.addAttribute("label", noteDTO.getLabel());
+        //验证结束
         Note note = Note.fromNoteDTO(noteDTO);
         note.setUser(user);
         noteService.save(note);

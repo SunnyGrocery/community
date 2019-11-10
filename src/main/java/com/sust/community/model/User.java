@@ -17,6 +17,7 @@ public class User {
         user.setAccountId(userDTO.getId());
         user.setToken(UUID.randomUUID().toString());
         user.setBio(userDTO.getBio());
+        user.setAvatarUrl(userDTO.getAvatarUrl());
         return user;
     }
 
@@ -25,6 +26,7 @@ public class User {
     private String accountId;
     private String token;
     private String bio;
+    private String avatarUrl;
     private Date createTime;
     private Date modifiedTime;
 

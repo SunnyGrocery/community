@@ -1,5 +1,7 @@
 package com.sust.community.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sust.community.mapper.NoteMapper;
 import com.sust.community.model.Note;
 import com.sust.community.service.NoteService;
@@ -37,7 +39,25 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public List<Note> findByUserId(String userId) {
+    public List<Note> findByUserId(Integer userId) {
         return noteMapper.selectByUserId(userId);
+    }
+
+    @Override
+    public List<Note> findPageByUserId(Integer userId, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize, "modified_time desc , id desc");
+
+        return noteMapper.selectByUserId(userId);
+    }
+
+    @Override
+    public List<Note> findPage(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize, "modified_time desc , id desc");
+        return noteMapper.selectAll();
+    }
+
+    @Override
+    public List<Note> findAll() {
+        return noteMapper.selectAll();
     }
 }

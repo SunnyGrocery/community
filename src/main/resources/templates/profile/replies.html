@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title>iHome - Sunny</title>
+    <script src="/js/jquery-3.4.1.min.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/community.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!--导航-->
+<div th:replace="~{nav::header-common}"></div>
+
+<div class="container-fluid main-publish">
+    <!--列表-->
+    <div class="row">
+        <div class="col-lg-9 col-md-10 col-sm-12 col-xs-12">
+            <h3>
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                <span>回复他人</span>
+            </h3>
+            <hr class="main-hr"/>
+            <!--分页-->
+            <!--            <div th:replace="/nav::pages"></div>-->
+        </div>
+        <div th:replace="/profile/element::sub-left(replies)"></div>
+    </div>
+</div>
+</body>
+</html>

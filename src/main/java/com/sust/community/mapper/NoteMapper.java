@@ -20,5 +20,7 @@ public interface NoteMapper {
 
     Note selectById(Integer id);
 
-    List<Note> selectByUserId(String userId);
+    List<Note> selectByUserId(Integer userId);
+
+    List<Note> selectAll();
 }

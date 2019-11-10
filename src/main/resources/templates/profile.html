@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 <head>
-    <title>Sunny</title>
+    <title>iHome - Sunny</title>
     <script src="/js/jquery-3.4.1.min.js" type="application/javascript"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
@@ -14,20 +14,15 @@
 <div th:replace="~{nav::header-common}"></div>
 
 <div class="container-fluid main-publish">
-    <!--帖子列表-->
+    <!--列表-->
     <div class="row">
-        <!--左边栏-->
         <div class="col-lg-9 col-md-10 col-sm-12 col-xs-12">
-            <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;发现</h3>
+            <h3>
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                <span th:text="${active_name}"></span>
+            </h3>
             <hr class="main-hr"/>
             <div th:each="note : ${notes}" class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object img-rounded" data-src="holder.js/64x64" alt="64x64"
-                             th:src="${note.avatarUrl}"
-                             data-holder-rendered="true" style="width: 60px; height: 60px;" src="">
-                    </a>
-                </div>
                 <div class="media-body">
                     <h4 th:text="${note.title}" class="media-heading media-body-h4">问题标题</h4>
                     <p class="question-content page">
@@ -42,9 +37,15 @@
             <!--分页-->
             <div th:replace="nav::pages"></div>
         </div>
-        <!--右边栏-->
+
         <div class="col-lg-3 col-md-2 col-sm-12 col-xs-12 ">
-            <h3><span class="glyphicon glyphicon-fire" aria-hidden="true"></span>&nbsp;热门话题</h3>
+            <h3><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;个人中心</h3>
+            <div class="list-group">
+                <a href="/profile/question" class="list-group-item" th:classappend="${active=='question'}?'active'">
+                    <span class="badge">14</span>我的问题</a>
+                <a href="/profile/replays" class="list-group-item" th:classappend="${active=='replays'}?'active'">
+                    <span class="badge">14</span>最新回复</a>
+            </div>
         </div>
     </div>
 </div>

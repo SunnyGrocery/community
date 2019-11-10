@@ -13,11 +13,13 @@ public class UserDTO {
     //accountId
     private String id;
     private String bio;
+    private String avatarUrl;
 
     public static UserDTO fromUser(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getAccountId());
         userDTO.setName(user.getName());
+        userDTO.setAvatarUrl(user.getAvatarUrl());
         return userDTO;
     }
 }

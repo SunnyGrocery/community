@@ -16,5 +16,11 @@ public interface NoteService {
 
     Note findById(Integer id);
 
-    List<Note> findByUserId(String userId);
+    List<Note> findByUserId(Integer userId);
+
+    List<Note> findPageByUserId(Integer userId, Integer pageNum, Integer pageSize);
+
+    List<Note> findPage(Integer pageNum, Integer pageSize);
+
+    List<Note> findAll();
 }
