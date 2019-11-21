@@ -22,11 +22,11 @@ public class SessionInterceptor implements HandlerInterceptor {
     UserService userService;
 
     /**
-     * 给 request 写入 UserDTO 和 User 对象，若验证失败，则为空
-     * @param request
-     * @param response
-     * @param handler
-     * @return
+     * 根据 Cookies 给 request写入 UserDTO(user)和 User(userRaw)对象
+     * 若 Cookie为空或 Cookie中 token字段验证失败，则 均为空
+     * 这里也是为了效率考虑才这样做
+     *
+     * @return true 这里 Interceptor只做验证，所有请求放行
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {

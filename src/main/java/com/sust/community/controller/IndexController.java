@@ -42,7 +42,6 @@ public class IndexController {
         if (pageNum == null) {
             pageNum = 1;
         }
-
         List<Note> noteList = noteService.findPage(pageNum, 15);
 
         List<NoteDTO> noteDTOList = new ArrayList<>(noteList.size());
