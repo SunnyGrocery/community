@@ -2,6 +2,8 @@ package com.sust.community.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sust.community.enums.PageEnum;
+import com.sust.community.exception.CustomizeException;
 import com.sust.community.mapper.NoteMapper;
 import com.sust.community.model.Note;
 import com.sust.community.service.NoteService;
@@ -46,14 +48,21 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public List<Note> findPageByUserId(Integer userId, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize, "modified_time desc , id desc");
-
-        return noteMapper.selectByUserId(userId);
+        List<Note> noteList = noteMapper.selectByUserId(userId);
+        if (noteList.isEmpty()) {
+            throw new CustomizeException(PageEnum.PAGE_NUM_NOT_FOUND);
+        }
+        return noteList;
     }
 
     @Override
     public List<Note> findPage(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize, "modified_time desc , id desc");
-        return noteMapper.selectAll();
+        List<Note> noteList = noteMapper.selectAll();
+        if (noteList.isEmpty()) {
+            throw new CustomizeException(PageEnum.PAGE_NUM_NOT_FOUND);
+        }
+        return noteList;
     }
 
     @Override

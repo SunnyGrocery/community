@@ -1,7 +1,6 @@
 package com.sust.community.exception;
 
-import com.sust.community.enums.ResultEnum;
-import lombok.Getter;
+import com.sust.community.enums.CustomizeExceptionEnum;
 
 /**
  * Created by SunnyGrocery on 2019/11/21 23:08
@@ -9,8 +8,8 @@ import lombok.Getter;
 public class CustomizeException extends RuntimeException {
     private int code;
 
-    public CustomizeException(ResultEnum resultEnum) {
-        this(resultEnum.getCode(), resultEnum.getMsg());
+    public CustomizeException(CustomizeExceptionEnum customizeExceptionEnum) {
+        this(customizeExceptionEnum.getCode(), customizeExceptionEnum.getMsg());
     }
 
     public CustomizeException(int code, String message) {
